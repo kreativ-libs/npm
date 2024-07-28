@@ -1,0 +1,25 @@
+{
+  "name": "vite-plugin-dev-preview",
+  "version": "0.0.1",
+  "description": "Vite plugin for development to quickly scaffold html pages to preview script files",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kreativ-libs/npm.git"
+  },
+  "author": "zastrowm",
+  "module": "dist/index.mjs",
+  "types": "dist/index.mjs",
+  "license": "MIT",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "npm run compile",
+    "compile": "tsc",
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "tsc --noEmit --watch"
+  },
+  "peerDependencies": {
+    "vite": "^5.0.0"
+  }
+}
