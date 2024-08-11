@@ -3,7 +3,7 @@ import { is } from './is'
 
 type ValueType = 'number' | 'array' | 'string' | 'object' | 'function' | 'promise' | 'other'
 
-const useCases: Array<[unknown, ValueType, ...rest: ValueType[]]> = [
+const useCases: Array<[value: unknown, type: ValueType, ...rest: ValueType[]]> = [
   [0, 'number'],
   [1, 'number'],
   [Number.NaN, 'number'],

@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest'
 import { Duration } from './duration'
 
 describe('Duration', () => {
-  type TestCase = [keyof typeof Duration, value: number, expectedMs: number]
+  type TestCase = [key: keyof typeof Duration, value: number, expectedMs: number]
 
   // noinspection PointlessArithmeticExpressionJS
   const testCases: Array<TestCase> = [
