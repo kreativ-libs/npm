@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "composite": true,
     "lib": ["dom", "ES2022"],
     "rootDir": "./src",
     "outDir": "./dist",
