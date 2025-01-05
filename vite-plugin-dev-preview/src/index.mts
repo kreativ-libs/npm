@@ -1,7 +1,7 @@
-import {type Connect, type Plugin, ViteDevServer} from "vite";
-import {ServerResponse} from "node:http";
-import * as fs from "node:fs/promises";
-import * as path from "node:path";
+import { type Connect, type Plugin, ViteDevServer } from 'vite'
+import { ServerResponse } from 'node:http'
+import * as fs from 'node:fs/promises'
+import * as path from 'node:path'
 
 /**
  * Determines how the dev-preview plugin works.
@@ -53,7 +53,7 @@ export interface DevPreviewOptions {
 
 const defaultOptions: DevPreviewOptions = {
   urlPrefix: "/$/dev-preview/",
-  extensions: [".tsx", ".ts", ".jsx", ".js"],
+  extensions: ["", ".tsx", ".ts", ".jsx", ".js"],
   htmlFilename: "dev.html",
   htmlPlaceholder: "<!-- placeholder -->",
 };
@@ -63,6 +63,8 @@ const defaultOptions: DevPreviewOptions = {
  * allows you to write a script to easily develop new features in an iterative fashion.
  */
 export function devPreview(options: DevPreviewOptions = {}): Plugin {
+  console.log("Adding developer previews")
+
   options = { ...defaultOptions, ...options };
 
   let _server: ViteDevServer | null = null;
@@ -91,7 +93,8 @@ export function devPreview(options: DevPreviewOptions = {}): Plugin {
       return;
     }
 
-    const devFilePath = req.originalUrl!.substring(prefix.length);
+    const originalPath = new URL(req.originalUrl, "http://localhost").pathname!;
+    const devFilePath = originalPath.substring(prefix.length);
 
     const resolveFile = async () => {
       for (const ext of variants) {
@@ -142,6 +145,7 @@ export function devPreview(options: DevPreviewOptions = {}): Plugin {
 
     try {
       const file = await resolveFile();
+
       if (file == null) {
         next();
         return;
